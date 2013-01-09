@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+# coding: utf-8
+#Author: Roy L Zuo (roylzuo at gmail dot com)
+#Description: 
+
+require 'optparse'
+require 'howdoi'
+options = {}
+
+OptionParser.new do |opts|
+    opts.banner = "Usage: #{$0} [options] QUERY ..."
+    opts.separator " "
+    options[:pos] = 1
+    opts.on("-p", "--pos N", Integer, "select answer in specified position (default: 1)") do |pos|
+      options[:pos] = pos
+    end
+    opts.on("-a", "--all", 'display the full text of the answer') do
+      option[:all] = true 
+    end
+end.parse!
+
+how_do_i(ARGV, options)

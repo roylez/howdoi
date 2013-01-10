@@ -47,7 +47,7 @@ def how_do_i(args, opts = {})
     page = get_url link
     html = Nokogiri.HTML page
     ans = html.at_css(".answer")
-    unless ans
+    if ans
       instruction = ans.css("pre").children.
         collect(&:content).
         join(" " * 5 + '-' * 50 + "\n") || 
@@ -58,6 +58,7 @@ def how_do_i(args, opts = {})
         puts ans.at('.post-text').content
       end
     end
+    exit
   end
   puts "Sorry, couldn't find any help with that topic"
 end

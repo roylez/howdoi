@@ -47,18 +47,19 @@ def how_do_i(args, opts = {})
     page = get_url link
     html = Nokogiri.HTML page
     ans = html.at_css(".answer")
-    instruction = ans.css("pre").children.
-      collect(&:content).
-      join(" " * 5 + '-' * 50 + "\n") || 
-      ans.at_css("code").content
-    unless opts[:all] or instruction.empty?
-      puts instruction
-    else
-      puts ans.at('.post-text').content
+    unless ans
+      instruction = ans.css("pre").children.
+        collect(&:content).
+        join(" " * 5 + '-' * 50 + "\n") || 
+        ans.at_css("code").content
+      unless opts[:all] or instruction.empty?
+        puts instruction
+      else
+        puts ans.at('.post-text').content
+      end
     end
-  else
-    puts "Sorry, couldn't find any help with that topic"
   end
+  puts "Sorry, couldn't find any help with that topic"
 end
 
 if __FILE__ == $0

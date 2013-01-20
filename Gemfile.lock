@@ -1,0 +1,16 @@
+PATH
+  remote: .
+  specs:
+    howdoi (0.0.2)
+      nokogiri (>= 1.5.6)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    nokogiri (1.5.6)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  howdoi!
